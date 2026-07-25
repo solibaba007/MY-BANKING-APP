@@ -92,9 +92,12 @@ export default function home() {
                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
                 disabled:opacity-50 disabled:cursor-not-allowed">
                     
-                {loading ? (<div className='justify-center items-center'>
-                  <span className='text-xl font-bold'>Processing....</span>
-                </div>) : 'SIGN IN'}
+               {loading ? (
+                      <div className="flex items-center justify-center gap-3">
+                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        <span>Processing...</span>
+                      </div>) : ('Sign In')}      
+                  
             </button>
             <button 
                 type='button'

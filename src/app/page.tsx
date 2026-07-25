@@ -48,7 +48,7 @@ export default function home() {
     <div className='flex flex-col items-center justify-center min-h-screen  bg-gray-50 '>
       <div className='rounded-xl p-10  bg-gray-100 shadow-xl border border-gray-200 space-y-6 w-full max-w-md pt-6 '>
         <h2 className='font-extrabold text-2xl text-center tracking-tight text-emerald-500 uppercase '>
-           ✈ First Bank Pls
+           ✈ Solibaba Trust Bank LTD
         </h2>
         <p className='text-center text-medium text-gray-500 block'>
           Enter your credentials to security access your ledger accounts.

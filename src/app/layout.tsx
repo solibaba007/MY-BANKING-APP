@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Secure Bank Portal',
+  title: 'Solibaba Trust Bank Trust Portal',
   description: 'Fully sandboxed secure legdger access overview dashboard'
 };
 

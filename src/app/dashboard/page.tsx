@@ -135,8 +135,8 @@ export default function Dashboard() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-4xl font-black text-gray-800 animate-pulse" role="status">
-          Loading account dashboard...
+        <div className="text-xl font-black text-emerald-600 md:text-2xl animate-pulse" role="status">
+          Solibaba Trust-bank is Loading....
         </div>
       </div>
     );
@@ -147,7 +147,7 @@ export default function Dashboard() {
       <nav className="bg-gray-900 rounded-xl shadow-lg w-full max-w-4xl mx-auto p-4 mb-8">
         <div className="flex items-center justify-between">
           <span className="text-xl md:text-2xl text-emerald-500 font-bold tracking-wider uppercase">
-            ✈ First Bank PLC
+            ✈ Solibaba Trust Bank LTD
           </span>
 
           <div className="flex items-center gap-4">

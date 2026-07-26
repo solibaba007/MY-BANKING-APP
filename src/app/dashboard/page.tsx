@@ -146,9 +146,10 @@ export default function Dashboard() {
     <div className="min-h-screen p-4 md:p-8 bg-gray-100">
       <nav className="bg-gray-900 rounded-xl shadow-lg w-full max-w-4xl mx-auto p-4 mb-8">
         <div className="flex items-center justify-between">
-          <span className="text-xl md:text-2xl text-emerald-500 font-bold tracking-wider uppercase">
-            ✈ Solibaba Trust Bank LTD
-          </span>
+          <div className="flex items-center gap-3">
+            <span className='text-xl'>🐘</span>
+            <span className='text-2xl text-blue-600 tracking-wider'>UNION BANK PLC</span>
+          </div>
 
           <div className="flex items-center gap-4">
             <span className="font-semibold text-sm text-gray-200 hidden sm:inline">

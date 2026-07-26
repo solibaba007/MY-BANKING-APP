@@ -10,103 +10,99 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function home() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handAuthAction = async(e: React.FormEvent<HTMLFormElement>, type: 'SIGN_IN' | 'SIGN_UP') => {
+  const handleAutUser = async(e: React.FormEvent<HTMLFormElement>, type: 'SIGN_IN' | 'SIGN_UP') => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setMessage("");
 
     if (type === 'SIGN_UP') {
       const {data, error} = await supabase.auth.signUp({email, password});
       if (error) {
-        setMessage(`❌ Authentication Error: ${error.message}`); 
+        setMessage(`❌ Authication Failed: ${error.message}`);
       }
       else if (data.user) {
-        setMessage('✅ Success! Account Registered successfully')
+        setMessage('✅Congratulation! YOU have registered completely');
       }
-    };
 
+      };
     if (type === 'SIGN_IN') {
       const {data, error} = await supabase.auth.signInWithPassword({email, password});
       if (error) {
-        setMessage(`❌ Authentication Failed: ${error.message}`);
+        setMessage(`❌Authentication Failed: ${error.message}`);
+
       }
       else if (data.user) {
-        setMessage('✅Logging successfully, directing you to account dashboard.....')
+        setMessage('✅Congratulation! You re logged into next page......');
         router.push('/dashboard');
       }
     };
+
     setLoading(false);
   };
 
-
   return(
-    <div className='flex flex-col items-center justify-center min-h-screen  bg-gray-50 '>
-      <div className='rounded-xl p-10  bg-gray-100 shadow-xl border border-gray-200 space-y-6 w-full max-w-md pt-6 '>
-        <h2 className='font-extrabold text-2xl text-center tracking-tight text-emerald-500 uppercase '>
-           ✈ Solibaba Trust Bank LTD
-        </h2>
-        <p className='text-center text-medium text-gray-500 block'>
-          Enter your credentials to security access your ledger accounts.
+    <div className='flex flex-col min-h-screen bg-gray-50 justify-center items-center py-5'>
+      <div className='rounded-xl shadow-xl bg-gray-100 w-full max-w-md border border-gray-300 p-8 space-y-6 py-4'>
+        <div className='text-2xl font-bold uppercase flex items-center justify-center gap-2'>
+           <span className='text-2xl'>🐘</span>
+           <h2 className='text-blue-700 tracking-wider '>Union bank pls</h2>
+        </div>
+        <p className='text-sm text-bold text-base text-center'>
+          Enter your email address and password to get access to ledger account.
         </p>
-        <form onSubmit={(e)=> handAuthAction(e, 'SIGN_IN')} className='space-y-4 mt-2'>
+        <form onSubmit={(e) => handleAutUser(e, 'SIGN_IN')} className='space-y-6 mt-2'>
+          <label className='text-sm font-medium text-base mb-1'>Email</label>
           <div>
-            <label className='font-medium text-gray-700 mb-1 text-sm'>Email Address</label>
-            <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} 
-                placeholder='sample@gmail.com'
-                className='w-full rounded-xl py-2 px-3 focus:ring-2 focus:outline-none focus:ring-blue-200 border border-blue-200 ' required>
-            </input> 
+            <input 
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder='example@tyhoo.con'
+              className='focus:ring-2 py-2 px-4 focus:outline-none focus:ring-blue-500 border border-blue-300 bg-blue-100 w-full rounded-xl text-sm text-base' required>
+            </input>
           </div>
+          <label className='text-sm font-medium text-base mb-1'>Password</label>
           <div>
-             <label className='font-medium text-gray-700 mb-1 text-sm'>Password</label>
-             <input 
-                type='password'
-                value={password}
-                onChange={(e)=> setPassword(e.target.value)} 
-                placeholder='••••••••'
-                className='w-full rounded-xl py-2 px-3 focus:ring-2 focus:outline-none focus:ring-blue-200 border border-blue-200' required>
-              </input>
+            <input 
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='•••••••'
+              className='focus:ring-2 py-2 px-4 focus:outline-none focus:ring-blue-500 border border-blue-300 bg-blue-100 w-full rounded-xl text-sm text-base' required>
+
+            </input>
+            {message &&(
+              <div className='text-sm text-center text-blue-600 mt-3'>
+                {message}
+              </div>
+            )}
+
           </div>
-          {message &&(
-            <p className='text-sm text-blue-500 text-center font-medium px-2'>
-              {message}
-            </p>
-          )}
-          <div className='flex flex-col gap-4 pt-2'>
-            <button
-              type="submit"
-              disabled={loading}
-              className="
-                w-full px-4 py-3 
-                text-base font-semibold text-white 
-                bg-blue-600 hover:bg-blue-700 active:bg-blue-800
-                rounded-xl shadow-sm
-                transition-all duration-200 ease-in-out
-                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                disabled:opacity-50 disabled:cursor-not-allowed">
-                    
-               {loading ? (
-                      <div className="flex items-center justify-center gap-3">
-                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                        <span>Processing...</span>
-                      </div>) : ('Sign In')}      
-                  
-            </button>
+          <div className=' flex flex-col justify-center items-center gap-4 '>
             <button 
-                type='button'
-                className='w-full block rounded-2xl py-3 px-3 text-gray-700 bg-gray-300 hover:bg-gray-400 text-lg font-bold border border-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2'
-                onClick={(e)=> handAuthAction(e as unknown as React.FormEvent<HTMLFormElement>, 'SIGN_UP')}>
-                  Create New Account
+              type='submit'
+              disabled={loading}
+              className='rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-emerald-300
+              focus:ring-offset-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed
+              ease-in-out transition-all duration-200 border border-blue-300 py-3 px-6'>
+              {loading ? (<div className='flex items-center justify-center gap-3 font-bold '>
+                  <span className='animate-spin rounded-full border-solid border-2 h-5 w-5 border-t-transparent border-white'></span>
+                  <span className='text-sm text-white'> Processing.....</span>
+                </div>): ('SIGN IN')}
             </button>
+            < button 
+              type='button'
+              onClick={(e) => handleAutUser(e as unknown as React.FormEvent<HTMLFormElement>, 'SIGN_UP')}
+              className='w-full rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-300 bg-gray-600 hover:bg-gray-700 text-white font-bold border border-gray-300 py-3 px-6'>
+                Create An Account
+            </button>
+
           </div>
-      
         </form>
       </div>
     </div>
